@@ -1,6 +1,5 @@
 import re
 import os
-import os
 import smtplib
 
 from datetime import date
