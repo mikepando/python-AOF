@@ -10,24 +10,29 @@ from email.mime.text import MIMEText
 
 #Walking the directory
 os.path.join('usr','bin','spam') #allows this to run on windows/mac/linux
-folder='C:\\Users\\username\\Desktop\\folder' #change this to the location of the files
+folder=os.getcwd() #change this to the location of the excel sheets
+
+#Creating the receiver_email address
 pattern=r"^([a-zA-Z]{2,}\s[a-zA-z]{1,}'?-?[a-zA-Z]{2,}\s?([a-zA-Z]{1,})?)"
 email='@mail.com' #change this if the email extension changes
 
 #SMTP Settings
-port=587 #Check the port for your email's SMTP server
-smtp_server="smtp.office365.com" #Replace with the SMTP server for your email provider
-login="YOUR@EMAIL.com" #this is your email address login
-password="YOURPASSWORD" #to bypass MFA with Office365, you need to use an App Password
+port=587 
+smtp_server="smtp.office365.com"
+login="username@mail.com" #this is your email address login
+password="password" #to bypass MFA with Office365, you need to use an App Password
 
 today=date.today()
-subject="File for " + str(today) #Shows text and current date. Change the text in the ""
-sender_email="YOUR@EMAIL.com" #change this to match your email address (same as login email)
+subject="Files for " + str(today) #Shows text and current date. Change the text in the ""
+sender_email="username@mail.com" #change this to match your email address (same as login email)
 body="""\
 Hello,
 
 Attached is your file. Please confirm that it is accurate.
-If there are any issues or concerns, please reach out."""
+If there are any issues or concerns, please reach out.
+
+Thank you,
+Your Name"""
 
 for folderName, subfolders, filenames in os.walk(folder):
     for filename in filenames:
@@ -43,7 +48,7 @@ for folderName, subfolders, filenames in os.walk(folder):
                 message["To"]=receiver_email
                 message["Subject"]=subject
                 message.attach(MIMEText(body, "plain"))
-                with open(str(folder+"\\"+filename), "rb") as attachment:
+                with open(str(folder+"\\outgoing_files\\"+filename), "rb") as attachment:
                     part=MIMEBase("application", "octet-stream")
                     part.set_payload(attachment.read())
                 encoders.encode_base64(part)
@@ -54,16 +59,18 @@ for folderName, subfolders, filenames in os.walk(folder):
                 message.attach(part)
                 text=message.as_string()
 
-                mailserver=smtplib.SMTP('smtp.office365.com',587)  #Adjust this with your SMTP info
+                mailserver=smtplib.SMTP(smtp_server,port)
                 mailserver.ehlo()
                 mailserver.starttls()
                 mailserver.ehlo()
                 mailserver.login(login, password)
                 mailserver.sendmail(sender_email, receiver_email, text)
                 mailserver.quit()
-            except:
-                print("Oops!",sys.exc_info()[0],"occured.") 
+            except Exception as e:
+                print("Oops!",e,"occured.\n")  
             else:
                 print('Sent\n')
+        elif filename=='asfa.py' or filename=='send.bat':
+            continue
         else:
             print('\nThe', filename, 'file is INVALID. Please format as: FIRST LAST.\n')
