@@ -34,7 +34,7 @@ If there are any issues or concerns, please reach out.
 Thank you,
 Your Name"""
 
-for folderName, subfolders, filenames in os.walk(folder):
+for folderName, subfolders, filenames in os.walk(str(folder+"\\outgoing_files")):
     for filename in filenames:
         regex=re.match(pattern,filename)
         if regex:
@@ -70,7 +70,5 @@ for folderName, subfolders, filenames in os.walk(folder):
                 print("Oops!",e,"occured.\n")  
             else:
                 print('Sent\n')
-        elif filename=='asfa.py' or filename=='send.bat':
-            continue
         else:
             print('\nThe', filename, 'file is INVALID. Please format as: FIRST LAST.\n')
