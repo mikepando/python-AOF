@@ -1,0 +1,6 @@
+This is a temporary file. Place all the files you want to send in the 'outgoing_files' folder. Make sure the file name is formatted as: First Last
+
+Example: John Doe.exe
+Jane Doe.xlsx
+
+The regular expression matching will only send files that match this format. 
