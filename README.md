@@ -1,11 +1,19 @@
 # Automate Outgoing Files with Python
 *This Python script sends a file as an attachment to an email address derived from the filename.*
 
+![Output](https://i.imgur.com/2cY0q5b.png)
+
+
 This was made to automate the task of sending files to individual users. Previously, a user would receive 60+ files (e.g. C2 forms) and send each individual their file, up to three times per month. This script creates an email address based off of the filename ```FIRST LAST.DOCX``` and sends the file as an attachment to that respective email address with a preconfigured subject and body. It utilizes Regular Expressions to only execute on filenames that match the ```First Last``` format. Only files in the ```outgoing_files``` folder are affected. 
 
 ### Requirements
 You only need Python to run this script.
 * [Python 3.8.1](https://www.python.org/downloads/)
+
+#### Utilizes
+* [os](https://docs.python.org/2/library/os.html) - To crawl a directory
+* [re](https://docs.python.org/2/library/re.html) - For regular expression matching the filename
+* [smtplib](https://docs.python.org/3/library/smtplib.html) - For sending files as attachments
 
 
 ## Configuration
