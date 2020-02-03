@@ -11,8 +11,8 @@ You only need Python to run this script.
 * [Python 3.8.1](https://www.python.org/downloads/)
 
 #### Utilizes
-* [os](https://docs.python.org/2/library/os.html) - To crawl a directory
-* [re](https://docs.python.org/2/library/re.html) - For regular expression matching the filename
+* [os](https://docs.python.org/3/library/os.html) - To crawl a directory
+* [re](https://docs.python.org/3/library/re.html) - For regular expression matching the filename
 * [smtplib](https://docs.python.org/3/library/smtplib.html) - For sending files as attachments
 
 
