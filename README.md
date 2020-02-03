@@ -5,12 +5,14 @@ This Python script sends a file as an attachment to an email address based on th
 You only need Python to run this script.
 * [Python 3.8.1](https://www.python.org/downloads/)
 
+
 ## Configuration
 There are a few variables in the **AOF.py** file which need their values adjusted.
 
 ##### Creating the receiver_email address 
 1. The ```email``` variable should be adjusted to match the recipients email extension, e.g., ```@gmail.com, @aol.com, @companyname.com```.
    - All the recipients have to have the same email extension. In my usage, all recipients were assigned a company email, making the username the only changing variable. 
+   - This script creates email adresses based off the filename. All files must be in a ```First Last``` format. The email address format used is `First initial + Last name + email`. A file named ```John Doe.docx``` would be rendered as ```JDoe@mail.com```.
 
 ##### SMTP Settings
 2. The ```port``` and ```smpt_server``` variables need to match the settings of your email provider. A list of common servers and ports can be found at [Arclab](https://www.arclab.com/en/kb/email/list-of-smtp-and-pop3-servers-mailserver-list.html).
