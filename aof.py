@@ -10,7 +10,7 @@ from email.mime.text import MIMEText
 
 #Walking the directory
 os.path.join('usr','bin','spam') #allows this to run on windows/mac/linux
-folder=os.getcwd() #change this to the location of the excel sheets
+folder=os.getcwd() #Initially intended to drop the script and bat file and have it run anywhere. Just leftover code I didn't change. 
 
 #Creating the receiver_email address
 pattern=r"^([a-zA-Z]{2,}\s[a-zA-z]{1,}'?-?[a-zA-Z]{2,}\s?([a-zA-Z]{1,})?)"
