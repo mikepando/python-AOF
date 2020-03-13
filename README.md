@@ -4,7 +4,7 @@
 ![Output](https://i.imgur.com/2cY0q5b.png)
 
 
-This was made to automate the task of sending batches of individual files to their respective users. This script crawls the ```outgoing_files``` directory for filenames to then index our user directory. Only files in the ```outgoing_files``` folder are affected. 
+This was made to automate the task of sending batches of individual files to their respective users. This script crawls the ```outgoing_files``` directory for filenames to then index the user dictionary. Only files in the ```outgoing_files``` folder are affected. 
 
 ### Requirements
 You only need Python to run this script.
