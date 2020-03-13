@@ -10,7 +10,6 @@ from email.mime.text import MIMEText
 
 #Walking the directory
 os.path.join('usr','bin','spam') #allows this to run on windows/mac/linux
-folder=os.getcwd() #Initially intended to drop the script and bat file and have it run anywhere. Just leftover code I didn't change. 
 
 #Creating the receiver_email address
 pattern=r"^([a-zA-Z]{2,}\s[a-zA-z]{1,}'?-?[a-zA-Z]{2,}\s?([a-zA-Z]{1,})?)"
@@ -19,12 +18,11 @@ email='@mail.com' #change this if the email extension changes
 #SMTP Settings
 port=587 
 smtp_server="smtp.office365.com"
-login="username@mail.com" #this is your email address login
+myemail="username@mail.com" #this is your email address login
 password="password" #to bypass MFA with Office365, you need to use an App Password
 
 today=date.today()
 subject="Files for " + str(today) #Shows text and current date. Change the text in the ""
-sender_email="username@mail.com" #change this to match your email address (same as login email)
 body="""\
 Hello,
 
@@ -34,7 +32,7 @@ If there are any issues or concerns, please reach out.
 Thank you,
 Your Name"""
 
-for folderName, subfolders, filenames in os.walk(str(folder+"\\outgoing_files")):
+for folderName, subfolders, filenames in os.walk(".\\outgoing_files"):
     for filename in filenames:
         regex=re.match(pattern,filename)
         if regex:
@@ -44,11 +42,11 @@ for folderName, subfolders, filenames in os.walk(str(folder+"\\outgoing_files"))
             print(filename, receiver_email)
             try:
                 message=MIMEMultipart()
-                message["From"]=sender_email
+                message["From"]=myemail
                 message["To"]=receiver_email
                 message["Subject"]=subject
                 message.attach(MIMEText(body, "plain"))
-                with open(str(folder+"\\outgoing_files\\"+filename), "rb") as attachment:
+                with open(".\\outgoing_files\\"+filename, "rb") as attachment:
                     part=MIMEBase("application", "octet-stream")
                     part.set_payload(attachment.read())
                 encoders.encode_base64(part)
@@ -63,8 +61,8 @@ for folderName, subfolders, filenames in os.walk(str(folder+"\\outgoing_files"))
                 mailserver.ehlo()
                 mailserver.starttls()
                 mailserver.ehlo()
-                mailserver.login(login, password)
-                mailserver.sendmail(sender_email, receiver_email, text)
+                mailserver.login(myemail, password)
+                mailserver.sendmail(myemail, receiver_email, text)
                 mailserver.quit()
             except Exception as e:
                 print("Oops!",e,"occured.\n")  
