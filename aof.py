@@ -30,6 +30,12 @@ If there are any issues or concerns, please reach out.
 Thank you,
 Your Name"""
 
+class bcolors:  #Defining the color we will add to our output
+    OKGREEN = '\033[92m'
+    WARNING = '\033[93m'
+    FAIL = '\033[91m'
+    ENDC = '\033[0m'
+
 success=0 #counters for success/failure
 failures=0
 
@@ -67,11 +73,11 @@ for folderName, subfolders, filenames in os.walk(".\\outgoing_files"):
                 mailserver.sendmail(myemail, client_email, text)
                 mailserver.quit()
                 success=success+1
-                print("An email has been sent!\n")
+                print(f"{bcolors.OKGREEN}An email has been sent!{bcolors.ENDC}\n")
             except Exception as e:
                 failures=failures+1
-                print("Oops!", e ,"occured.\n")
+                print(f"{bcolors.FAIL}Oops!{bcolors.ENDC}", e ,f"{bcolors.FAIL}occured.{bcolors.ENDC}\n")
         else: 
             failures=failures+1
-            print("Error:", client_name, "was not found in the email list. Please check the REPS.PY file.\n")
+            print(f"{bcolors.FAIL}Error:{bcolors.ENDC}", client_name, f"{bcolors.WARNING}was not found in the email list. Please check the LIST.PY file.{bcolors.ENDC}\n")
 print("This script has finished with",failures,"errors and",success,"emails sent.")
