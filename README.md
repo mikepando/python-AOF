@@ -1,7 +1,7 @@
 # Automate Outgoing Files with Python
 *This Python script sends a file as an attachment to an email address derived from the filename.*
 
-![Output](https://i.imgur.com/2cY0q5b.png)
+![Output](https://i.imgur.com/PYtfFui.png)
 
 
 This was made to automate the task of sending batches of individual files to their respective users. This script crawls the ```outgoing_files``` directory for filenames to then index the user dictionary. Only files in the ```outgoing_files``` folder are affected. 
