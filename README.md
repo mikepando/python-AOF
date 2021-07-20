@@ -10,7 +10,7 @@ This was made to automate the task of sending batches of individual files to the
 * [Python 3.8.1](https://www.python.org/downloads/)
 * [xlrd](https://xlrd.readthedocs.io/en/latest/)
 * _Optional:_ [Enable ANSI in console](https://stackoverflow.com/questions/16755142/how-to-make-win32-console-recognize-ansi-vt100-escape-sequences)
-"In latest Windows 10, you can enable ANSI in console via the following reghack -- in ```HKCU\Console``` create a DWORD named ```VirtualTerminalLevel``` and set it to ```0x1```; then restart cmd.exe." - [BrainSlugs83](https://stackoverflow.com/questions/16755142/how-to-make-win32-console-recognize-ansi-vt100-escape-sequences#comment92954461_16799175)
+* "In latest Windows 10, you can enable ANSI in console via the following reghack -- in ```HKCU\Console``` create a DWORD named ```VirtualTerminalLevel``` and set it to ```0x1```; then restart cmd.exe." - [BrainSlugs83](https://stackoverflow.com/questions/16755142/how-to-make-win32-console-recognize-ansi-vt100-escape-sequences#comment92954461_16799175)
 
 #### Utilizes
 * [os](https://docs.python.org/3/library/os.html) - To crawl a directory
@@ -27,7 +27,7 @@ This script runs based on a unique identifier at the end of a filename. In the e
    - App Passwords with [Office 365](https://support.office.com/en-us/article/Create-an-app-password-for-Office-365-3e7c860f-bda4-4441-a618-b53953ee1183).
    - App Passwords with [Gmail](https://support.google.com/accounts/answer/185833?hl=en).
 4. The ```sender_email``` variable allows you to choose the outgoing email address. This will be different from ```myemail``` if you have an alias or send-as permissions to another mailbox you want to use. 
-5. Change the ```subject``` variable to fit your needs. It's default output is ```Files for 2020-02-03``` where the date changes to the current date when the file is run.
+5. Change the ```subject``` variable to fit your needs. 
 6. Then modify the ```body``` variable to fit the message you intend to mass send. It is set send in plain text.
 
 #### Customization
