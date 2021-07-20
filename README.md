@@ -10,9 +10,7 @@ This was made to automate the task of sending batches of individual files to the
 * [Python 3.8.1](https://www.python.org/downloads/)
 * [xlrd](https://xlrd.readthedocs.io/en/latest/)
 * _Optional:_ [Enable ANSI in console](https://stackoverflow.com/questions/16755142/how-to-make-win32-console-recognize-ansi-vt100-escape-sequences)
-
-##### Enable ANSI in console
-"In latest Windows 10, you can enable ANSI in conhost via the following reghack -- in ```HKCU\Console``` create a DWORD named ```VirtualTerminalLevel``` and set it to ```0x1```; then restart cmd.exe." - [BrainSlugs83](https://stackoverflow.com/questions/16755142/how-to-make-win32-console-recognize-ansi-vt100-escape-sequences#comment92954461_16799175)
+"In latest Windows 10, you can enable ANSI in console via the following reghack -- in ```HKCU\Console``` create a DWORD named ```VirtualTerminalLevel``` and set it to ```0x1```; then restart cmd.exe." - [BrainSlugs83](https://stackoverflow.com/questions/16755142/how-to-make-win32-console-recognize-ansi-vt100-escape-sequences#comment92954461_16799175)
 
 #### Utilizes
 * [os](https://docs.python.org/3/library/os.html) - To crawl a directory
