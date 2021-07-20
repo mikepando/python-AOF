@@ -4,21 +4,23 @@
 ![Output](https://i.imgur.com/PYtfFui.png)
 
 
-This was made to automate the task of sending batches of individual files to their respective users. This script crawls the ```outgoing_files``` directory for filenames to then index the user dictionary. Only files in the ```outgoing_files``` folder are affected. 
+This was made to automate the task of sending batches of individual files to their respective users. This script crawls the ```outgoing_files``` directory for filenames with a unique number to then match to an email dictionary we have created in an Excel. Only files in the ```outgoing_files``` folder are affected. 
 
 ### Requirements
-You only need Python to run this script.
 * [Python 3.8.1](https://www.python.org/downloads/)
+* [xlrd](https://xlrd.readthedocs.io/en/latest/)
+* _Optional:_ [Enable ANSI in console](https://stackoverflow.com/questions/16755142/how-to-make-win32-console-recognize-ansi-vt100-escape-sequences)
+
+##### Enable ANSI in console
+"In latest Windows 10, you can enable ANSI in conhost via the following reghack -- in ```HKCU\Console``` create a DWORD named ```VirtualTerminalLevel``` and set it to ```0x1```; then restart cmd.exe." - [BrainSlugs83](https://stackoverflow.com/questions/16755142/how-to-make-win32-console-recognize-ansi-vt100-escape-sequences#comment92954461_16799175)
 
 #### Utilizes
 * [os](https://docs.python.org/3/library/os.html) - To crawl a directory
 * [smtplib](https://docs.python.org/3/library/smtplib.html) - For sending files as attachments
 
 
-## Configuration
-You need to populate the dictionary in the **list.py** file with the names and email addresses of your recipients. 
-
-There are a few variables in the **AOF.py** file which need their values adjusted.
+## How It Works
+This script runs based on a unique identifier at the end of a filename. In the environment for which it was built, filenames looked like this: ```15648_271_1902_159406```. That last group of characters (159406) is the unique identifier. This script will take that number and search the excel sheet for a matching number in the first column. If a match is found, it will use the email address from the fourth column. An email will then be sent to that address with the file as an attachment.
 
 ##### SMTP Settings
 1. The ```port``` and ```smpt_server``` variables need to match the settings of your email provider. 
@@ -27,13 +29,24 @@ There are a few variables in the **AOF.py** file which need their values adjuste
 3. The ```password``` variable needs ***special attention***. If you use MFA (Multi-factor authentication) with your provider, you need to create an _App Password_. MFA will prevent authorization otherwise. If you do not use MFA, just use your regular password.
    - App Passwords with [Office 365](https://support.office.com/en-us/article/Create-an-app-password-for-Office-365-3e7c860f-bda4-4441-a618-b53953ee1183).
    - App Passwords with [Gmail](https://support.google.com/accounts/answer/185833?hl=en).
-4. Change the ```subject``` variable to fit your needs. It's default output is ```Files for 2020-02-03``` where the date changes to the current date when the file is run.
-5. Then modify the ```body``` variable to fit the message you intend to mass send. It is set send in plain text.
+4. The ```sender_email``` variable allows you to choose the outgoing email address. This will be different from ```myemail``` if you have an alias or send-as permissions to another mailbox you want to use. 
+5. Change the ```subject``` variable to fit your needs. It's default output is ```Files for 2020-02-03``` where the date changes to the current date when the file is run.
+6. Then modify the ```body``` variable to fit the message you intend to mass send. It is set send in plain text.
+
+#### Customization
+To change the rows/columns that are used for the unique identifier and email address:
+- Change the numbers in the brackets of the find_email function. Numbers start at 0.
+- ```if row_value[0] == float(unique):
+            email=row_value[2]```
+            
+This block of code is used for getting the unique number from the filename.
+-```getUnique=justfilename.split("_")
+    unique=getUnique[3]
+    email=find_email(excel_file,unique)```
 
 ##### (Optional) Running from a Batch file
 - You can run this file by launching a batch file instead of using an IDE.
-- Right Click -> Edit the ```Send.bat``` file and change ```"Path where your Python exe is stored\python.exe"``` to match the location of your python exe. Make sure to ***keep the quotations***.
-  - A common installation location is ```Users\USERNAME\AppData\Local\Programs\Python\Python38\python.exe```
+- Right Click -> Edit the ```Send.bat``` file and make sure the path for python.exe matches the location of your python installation.
 
 ###### Disclaimer
-*This was made for educational purposes and was tailored to a specific scenario. The code is available to anyone to use and modify to fit their purpose.*
+*This was made for a very niche use in an office environment. It won't work for you out of the box.*
