@@ -18,9 +18,8 @@ This was made to automate the task of sending batches of individual files to the
 * [os](https://docs.python.org/3/library/os.html) - To crawl a directory
 * [smtplib](https://docs.python.org/3/library/smtplib.html) - For sending files as attachments
 
-
 ## How It Works
-This script runs based on a unique identifier at the end of a filename. In the environment for which it was built, filenames looked like this: ```15648_271_1902_159406```. That last group of characters (159406) is the unique identifier. This script will take that number and search the excel sheet for a matching number in the first column. If a match is found, it will use the email address from the fourth column. An email will then be sent to that address with the file as an attachment.
+This script runs based on a unique identifier at the end of a filename. In the environment for which it was built, filenames looked like this: ```15648_271_1902_159406.pdf```. That last group of characters (159406) is the unique identifier. This script will take that number and search the excel sheet for a matching number in the first column. If a match is found, it will use the email address from the fourth column. An email will then be sent to that address with the file as an attachment.
 
 ##### SMTP Settings
 1. The ```port``` and ```smpt_server``` variables need to match the settings of your email provider. 
@@ -36,14 +35,8 @@ This script runs based on a unique identifier at the end of a filename. In the e
 #### Customization
 To change the rows/columns that are used for the unique identifier and email address:
 - Change the numbers in the brackets of the find_email function. Numbers start at 0.
-- ```if row_value[0] == float(unique):
-            email=row_value[2]```
+- ```if row_value[0] == float(unique):``` and ```email=row_value[2]```
             
-This block of code is used for getting the unique number from the filename.
--```getUnique=justfilename.split("_")
-    unique=getUnique[3]
-    email=find_email(excel_file,unique)```
-
 ##### (Optional) Running from a Batch file
 - You can run this file by launching a batch file instead of using an IDE.
 - Right Click -> Edit the ```Send.bat``` file and make sure the path for python.exe matches the location of your python installation.
