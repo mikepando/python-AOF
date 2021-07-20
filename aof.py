@@ -19,7 +19,7 @@ password="" #to bypass MFA with Office365, you need to use an App Password
 sender_email='alias@email.com' #The outgoing email address. For aliases or mailboxes your account has send-as permissions for
 
 excel_file='sheet.xlsx' #this is the location of the excel file where the values are stored
-file_path='C:\Users\%USERPROFILE%\Downloads' #location to crawl for files 
+file_path='\outgoing_files' #location to crawl for files 
 
 subject="This is a subject (Do not reply to this email)"
 body="""\
