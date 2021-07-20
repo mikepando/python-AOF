@@ -1,2 +1,2 @@
-"Path where your Python exe is stored\python.exe" "aof.py"
+"C:\Users\%USERPROFILE%\AppData\Local\Programs\Python\Python38\python.exe" "aof_excel.py"
 pause
