@@ -49,7 +49,7 @@ def find_email(path,unique):  #function that opens a workbook, then returns the 
     for row_num in range(sheet.nrows):
         row_value = sheet.row_values(row_num)
         if row_value[0] == float(unique):
-            email=row_value[1] #Change the value to match the desired row on your spreadsheet
+            email=row_value[2] #Change the value to match the desired row on your spreadsheet
             return(email)
 
 f=open('last_sent.txt','w')
